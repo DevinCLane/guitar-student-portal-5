@@ -11,6 +11,10 @@ const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 
+// server port and host
+const PORT = process.env.PORT;
+const HOSTNAME = process.env.HOSTNAME;
+
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
 
@@ -38,12 +42,12 @@ app.use(methodOverride("_method"));
 
 // Setup Sessions - stored in MongoDB
 app.use(
-  session({
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  })
+    session({
+        secret: "keyboard cat",
+        resave: false,
+        saveUninitialized: false,
+        store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    })
 );
 
 // Passport middleware
@@ -58,6 +62,8 @@ app.use("/", mainRoutes);
 app.use("/post", postRoutes);
 
 //Server Running
-app.listen(process.env.PORT, () => {
-  console.log("Server is running, you better catch it!");
+app.listen(PORT, HOSTNAME, () => {
+    console.log(
+        `Server is running on ${HOSTNAME}:${PORT}, you better catch it!`
+    );
 });
