@@ -12,8 +12,8 @@ const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
 
 // server port and host
-const PORT = process.env.PORT;
-const HOSTNAME = process.env.HOSTNAME;
+const PORT = process.env.PORT || 3000;
+const HOSTNAME = process.env.HOSTNAME || "0.0.0.0";
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
