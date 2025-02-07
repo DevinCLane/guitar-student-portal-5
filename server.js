@@ -64,6 +64,6 @@ app.use("/post", postRoutes);
 //Server Running
 app.listen(PORT, HOSTNAME, () => {
     console.log(
-        `Server is running on ${HOSTNAME}:${PORT}, you better catch it!`
+        `Server is running on http://${HOSTNAME}:${PORT}, you better catch it!`
     );
 });
