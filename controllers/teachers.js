@@ -1,5 +1,4 @@
 const Student = require("../models/Student");
-const Teacher = require("../models/Teacher");
 
 module.exports = {
     getDashboard: async (req, res) => {
