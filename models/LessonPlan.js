@@ -18,7 +18,7 @@ const LessonPlanSchema = new mongoose.Schema({
     cloudinaryId: {
         type: String,
         required: function () {
-            return !!this.cloudinaryId;
+            return !!this.image;
         },
     },
     teacher: {
