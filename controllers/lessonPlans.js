@@ -31,4 +31,20 @@ module.exports = {
             console.log(error);
         }
     },
+    deleteLessonPlan: async (req, res) => {
+        try {
+            // Find post by id
+            let lessonPlan = await LessonPlan.findById({ _id: req.params.id });
+            // Delete image from cloudinary
+            if (lessonPlan.cloudinaryId) {
+                await cloudinary.uploader.destroy(post.cloudinaryId);
+            }
+            // Delete post from db
+            await lessonPlan.remove({ _id: req.params.id });
+            console.log("Deleted Lesson Plan");
+            res.redirect(`student/${req.params.studentId}`);
+        } catch (err) {
+            res.redirect(`student/${req.params.studentId}`);
+        }
+    },
 };
