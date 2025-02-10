@@ -21,4 +21,13 @@ module.exports = {
             console.log(error);
         }
     },
+    deleteStudent: async (req, res) => {
+        try {
+            await Student.deleteOne({ _id: req.params.id });
+            res.redirect("teacher/dashboard");
+        } catch (error) {
+            console.log(error);
+            res.redirect("teacher/dashboard");
+        }
+    },
 };
