@@ -10,5 +10,7 @@ router.get("/getDashboard", ensureAuth, teacherController.getDashboard);
 router.post("/createStudent", ensureAuth, teacherController.createStudent);
 // view individual student
 router.get("/student/:id", ensureAuth, studentController.getStudent);
+// delete a student
+router.post("/deleteStudent/:id", ensureAuth, teacherController.deleteStudent);
 
 module.exports = router;
