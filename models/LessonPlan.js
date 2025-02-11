@@ -35,4 +35,4 @@ const LessonPlanSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("Post", LessonPlanSchema);
+module.exports = mongoose.model("LessonPlan", LessonPlanSchema);

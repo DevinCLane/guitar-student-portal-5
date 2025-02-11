@@ -5,7 +5,7 @@ const studentController = require("../controllers/students");
 const { ensureAuth } = require("../middleware/auth");
 
 // dashboard to view all students
-router.get("/getDashboard", ensureAuth, teacherController.getDashboard);
+router.get("/dashboard", ensureAuth, teacherController.getDashboard);
 // create a student
 router.post("/createStudent", ensureAuth, teacherController.createStudent);
 // view individual student

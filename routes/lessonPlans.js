@@ -12,6 +12,9 @@ router.post(
     lessonPlansController.createLessonPlan
 );
 
-router.delete("/deleteLessonPlan/:id/:studentId", lessonPlansController.delete);
+router.delete(
+    "/deleteLessonPlan/:id/:studentId",
+    lessonPlansController.deleteLessonPlan
+);
 
 module.exports = router;

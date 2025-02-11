@@ -1,10 +1,15 @@
 const Student = require("../models/Student");
+const Teacher = require("../models/Teacher");
 
 module.exports = {
     getDashboard: async (req, res) => {
         try {
             const students = await Student.find({ teacher: req.user.id });
-            res.render("teacher/dashboard", { students: students });
+            const teacher = await Teacher.find({ teacher: req.user.id });
+            res.render("teachers/dashboard", {
+                students: students,
+                teacher: teacher,
+            });
         } catch (error) {
             console.log(error);
         }
@@ -17,7 +22,7 @@ module.exports = {
                 email: req.body.email,
                 teacher: req.user.id,
             });
-            res.redirect("teacher/dashboard");
+            res.redirect("teachers/dashboard");
         } catch (error) {
             console.log(error);
         }
@@ -25,10 +30,10 @@ module.exports = {
     deleteStudent: async (req, res) => {
         try {
             await Student.deleteOne({ _id: req.params.id });
-            res.redirect("teacher/dashboard");
+            res.redirect("teachers/dashboard");
         } catch (error) {
             console.log(error);
-            res.redirect("teacher/dashboard");
+            res.redirect("teachers/dashboard");
         }
     },
 };
