@@ -26,7 +26,7 @@ module.exports = {
     getLessonPlan: async (req, res) => {
         try {
             const lessonPlan = await LessonPlan.findById(req.params.id);
-            res.render("lessonPlan/show", { lessonPlan: lessonPlan });
+            res.render("lessonPlan/lesson", { lessonPlan: lessonPlan });
         } catch (error) {
             console.log(error);
         }
