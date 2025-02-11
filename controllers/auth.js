@@ -1,6 +1,6 @@
 const passport = require("passport");
 const validator = require("validator");
-const User = require("../models/User");
+const Teacher = require("../models/Teacher");
 
 exports.getLogin = (req, res) => {
     if (req.user) {
@@ -87,29 +87,29 @@ exports.postSignup = (req, res, next) => {
         gmail_remove_dots: false,
     });
 
-    const user = new User({
-        userName: req.body.userName,
+    const teacher = new Teacher({
+        name: req.body.name,
         email: req.body.email,
         password: req.body.password,
     });
 
-    User.findOne(
-        { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
+    Teacher.findOne(
+        { $or: [{ email: req.body.email }, { name: req.body.name }] },
         (err, existingUser) => {
             if (err) {
                 return next(err);
             }
             if (existingUser) {
                 req.flash("errors", {
-                    msg: "Account with that email address or username already exists.",
+                    msg: "Account with that email address or name already exists.",
                 });
                 return res.redirect("../signup");
             }
-            user.save((err) => {
+            teacher.save((err) => {
                 if (err) {
                     return next(err);
                 }
-                req.logIn(user, (err) => {
+                req.logIn(teacher, (err) => {
                     if (err) {
                         return next(err);
                     }
