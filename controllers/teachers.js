@@ -4,7 +4,7 @@ module.exports = {
     getDashboard: async (req, res) => {
         try {
             const students = await Student.find({ teacher: req.user.id });
-            res.render("teacher/dashboard"), { students: students };
+            res.render("teacher/dashboard", { students: students });
         } catch (error) {
             console.log(error);
         }
@@ -13,6 +13,7 @@ module.exports = {
     createStudent: async (req, res) => {
         try {
             await Student.create({
+                name: req.body.name,
                 email: req.body.email,
                 teacher: req.user.id,
             });

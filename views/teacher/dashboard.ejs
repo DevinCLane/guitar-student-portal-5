@@ -1,4 +1,4 @@
-<%- include('partials/header') -%>
+<%- include('../partials/header') -%>
 <div class="container">
   <div class="row mt-5">
       <div class="col-6">
@@ -11,14 +11,12 @@
       <div class="col-6">
     <div class="row justify-content-center mt-5">
       <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
+        <% for(var i=0; i<students.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
+            <a href="/student/<%= students[i]._id%>"><% students[i].name %></a>
           </li>
         <% } %>
         </ul>
   </div>  
 </div>
-<%- include('partials/footer') -%>
+<%- include('../partials/footer') -%>
