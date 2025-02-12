@@ -6,6 +6,8 @@ const { ensureAuth } = require("../middleware/auth");
 
 // dashboard to view all students
 router.get("/dashboard", ensureAuth, teacherController.getDashboard);
+// Display the add a new student form
+router.get("/newStudent", ensureAuth, teacherController.getNewStudentForm);
 // create a student
 router.post("/createStudent", ensureAuth, teacherController.createStudent);
 // view individual student
