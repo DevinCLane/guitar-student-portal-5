@@ -97,6 +97,7 @@ exports.postSignup = (req, res, next) => {
         { $or: [{ email: req.body.email }, { name: req.body.name }] },
         (err, existingUser) => {
             if (err) {
+                console.log("database error:", err);
                 return next(err);
             }
             if (existingUser) {
