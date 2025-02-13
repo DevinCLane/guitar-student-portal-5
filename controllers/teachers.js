@@ -60,6 +60,7 @@ module.exports = {
 
     createStudent: async (req, res) => {
         try {
+            console.log("form data received:", req.body);
             await Student.create({
                 name: req.body.name,
                 email: req.body.email,
