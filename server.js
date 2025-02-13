@@ -9,7 +9,9 @@ const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
-const postRoutes = require("./routes/posts");
+const lessonPlanRoutes = require("./routes/lessonPlans");
+const studentRoutes = require("./routes/students");
+const teacherRoutes = require("./routes/teachers");
 
 // server port and host
 const PORT = process.env.PORT || 3000;
@@ -59,7 +61,9 @@ app.use(flash());
 
 //Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes);
-app.use("/post", postRoutes);
+app.use("/lessonPlans", lessonPlanRoutes);
+app.use("/students", studentRoutes);
+app.use("/teachers", teacherRoutes);
 
 //Server Running
 app.listen(PORT, HOSTNAME, () => {
