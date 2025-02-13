@@ -61,12 +61,21 @@ module.exports = {
     createStudent: async (req, res) => {
         try {
             console.log("form data received:", req.body);
-            await Student.create({
+            // create a new student
+            const student = await Student.create({
                 name: req.body.name,
                 email: req.body.email,
                 teacher: req.user.id,
             });
             console.log("student created successfully");
+            // update the teacher to include the new student
+
+            await Teacher.findByIdAndUpdate(
+                req.user.id,
+                { $push: { students: student._id } },
+                { new: true }
+            );
+
             res.redirect("/teachers/dashboard");
         } catch (error) {
             console.log(error);
