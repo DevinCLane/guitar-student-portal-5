@@ -9,34 +9,25 @@
           </div>
     <div class="row justify-content-center mt-5">
       <!-- show the student's name -->
+       <h1><%= student.name %></h1>
         <!-- lesson plans -->
       <ul class="row list-unstyled">
-        <% for(var i=0; i<students.length; i++) {%>
+        <% for(var i=0; i<lessonPlans.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/student/<%= students[i]._id%>"><% students[i].name %></a>
+            <a href="/lessonPlan/<%= lessonPlans[i]._id%>"><% lessonPlans[i].title %></a>
           </li>
         <% } %>
         </ul>
   </div>  
   <!-- add a new lesson plan -->
+  <div class="col-6">
+            <a href="/lessonPlan/createLessonPlan" class="btn btn-primary">New Lesson</a>
+  </div>
   <!-- this should be a button only -->
-   <div class="mt-5">
-            <h2>Add a new lesson</h2>
-            <form action="/post/createLessonPlan" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
-              </div>
-              <div class="mb-3">
-                <label for="caption" class="form-label">Lesson Content</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
-          </div>
+   <div class="col-6">
+        <div class="row justify-content-center mt-5">
+          <a class="btn btn-primary" href="/teachers/dashboard">Return to Dashboard</a>
+        </div>  
+      </div>  
 </div>
 <%- include('../partials/footer') -%>
