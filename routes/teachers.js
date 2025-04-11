@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const teacherController = require("../controllers/teachers");
-const studentController = require("../controllers/students");
+const teacherDashboardController = require("../controllers/teacher/dashboard");
+const teacherStudentController = require("../controllers/teacher/studentsController");
 const { ensureAuth } = require("../middleware/auth");
 const upload = require("../middleware/multer");
 
@@ -10,74 +10,88 @@ Teacher dashboard
 */
 
 // dashboard to view all students
-router.get("/dashboard", ensureAuth, teacherController.getDashboard);
+router.get("/dashboard", ensureAuth, teacherDashboardController.getDashboard);
 
 /* 
 Student Management
 */
 
+// Display add student form
+router.get(
+    "/students/new",
+    ensureAuth,
+    teacherStudentController.getNewStudentForm
+);
+// create new student
+router.post("/students", ensureAuth, teacherStudentController.createStudent);
+
 // view individual student
 // todo: create view for student
-router.get("/student/:studentId", ensureAuth, studentController.getStudent);
-// Display add student form
-router.get("/student/new", ensureAuth, teacherController.getNewStudentForm);
-// create new student
-router.post("/student", ensureAuth, teacherController.createStudent);
+router.get(
+    "/students/:studentId",
+    ensureAuth,
+    teacherStudentController.getStudent
+);
 // display edit student form
 // todo: create controller method for edit student form
-router.get(
-    "/student/:studentId/edit",
-    ensureAuth,
-    studentController.getEditStudentForm
-);
+// router.get(
+//     "/students/:studentId/edit",
+//     ensureAuth,
+//     studentController.getEditStudentForm
+// );
 // update student
 // todo: create controller method for update student
-router.put("/student/:studentId", ensureAuth, studentController.updateStudent);
+// router.put("/students/:studentId", ensureAuth, studentController.updateStudent);
 // delete student
 // todo: create controller method for deleting student
 router.delete(
-    "/student/:studentId",
+    "/students/:studentId",
     ensureAuth,
-    studentController.deleteStudent
+    teacherStudentController.deleteStudent
 );
-// delete a student
-// todo: create delete student functionality
-router.post("/deleteStudent/:id", ensureAuth, teacherController.deleteStudent);
 
-/* 
-Lesson Management
-*/
+// /*
+// Lesson Management
+// */
 
-// display new lesson form
-router.get(
-    "/student/:studentId/lesson/new",
-    ensureAuth,
-    teacherController.getNewLessonForm
-);
-// create a new lesson plan
-router.post(
-    "/student/:studentId/lesson",
-    ensureAuth,
-    upload.single("file"),
-    // todo: create a new lesson plan as a teacher
-    teacherController.createLesson
-);
-router.get(
-    "/student/:studentId/lessonPlan/:lessonId/edit",
-    ensureAuth,
-    teacherController.getEditLessonForm
-);
-router.put(
-    "/student/:studentId/lessonPlan/:lessonId",
-    ensureAuth,
-    teacherController.getEditLessonForm
-);
-// delete a lesson plan
-router.delete(
-    "/student/:studentId/lessonPlan/:lessonPlanId",
-    ensureAuth,
-    // todo: controller to delete a lesson plan as a teacher
-    teacherController.deleteLessonPlan
-);
+// // display new lesson form
+// router.get(
+//     "/students/:studentId/lessons/new",
+//     ensureAuth,
+//     teacherController.getNewLessonForm
+// );
+// // create a new lesson plan
+// router.post(
+//     "/students/:studentId/lessons",
+//     ensureAuth,
+//     upload.single("file"),
+//     // todo: create a new lesson plan as a teacher
+//     teacherController.createLesson
+// );
+
+// router.get(
+//     "/students/:studentId/lessons/:lessonId",
+//     ensureAuth,
+//     teacherController.getLesson
+// );
+// router.get(
+//     "/students/:studentId/lessons/:lessonId/edit",
+//     ensureAuth,
+//     teacherController.getEditLessonForm
+// );
+
+// router.put(
+//     "/students/:studentId/lessons/:lessonId",
+//     ensureAuth,
+//     teacherController.updateLesson
+// );
+
+// // delete a lesson plan
+// router.delete(
+//     "/students/:studentId/lessons/:lessonPlanId",
+//     ensureAuth,
+//     // todo: controller to delete a lesson plan as a teacher
+//     teacherController.deleteLesson
+// );
 
 module.exports = router;

@@ -1,34 +1,34 @@
-const Student = require("../models/Student");
-const Teacher = require("../models/Teacher");
+const Teacher = require("../../models/Teacher");
+const Student = require("../../models/Student");
+const LessonPlan = require("../../models/LessonPlan");
 
 module.exports = {
-    getDashboard: async (req, res) => {
+    getStudent: async (req, res) => {
         try {
-            const students = await Student.find({ teacher: req.user.id });
-            console.log("Students:", students); // Debugging log
+            const teacher = await Teacher.findById(req.user.id);
+            const student = await Student.findById(req.params.studentId);
+            const lessonPlans = await LessonPlan.find({
+                student: req.params.id,
+            });
 
-            const teacher = await Teacher.findById({ _id: req.user.id });
-            console.log("Teacher Query:", { _id: req.user.id }); // Debugging log
-            console.log("Teacher:", teacher); // Debugging log
-
-            if (!teacher) {
-                req.logout(() => {
-                    req.flash("errors", { msg: "Teacher not found." });
-                    res.redirect("/login");
+            if (!student) {
+                req.flash("errors", {
+                    msg: "student not found",
                 });
-                return;
+                return res.redirect("/teachers/dashboard");
             }
 
-            res.render("teachers/dashboard", {
-                students: students,
+            res.render("student/profile", {
+                student: student,
+                lessonPlans: lessonPlans,
                 teacher: teacher,
             });
         } catch (error) {
             console.log(error);
             req.flash("errors", {
-                msg: "An error occurred while loading the dashboard.",
+                msg: "An error occurred while fetching that student.",
             });
-            res.redirect("/login");
+            res.redirect("/teachers/dashboard");
         }
     },
 
@@ -82,6 +82,10 @@ module.exports = {
             res.redirect("/teachers/dashboard");
         }
     },
+
+    // todo: getEditStudentForm
+    // todo: updateStudent
+
     deleteStudent: async (req, res) => {
         try {
             await Student.deleteOne({ _id: req.params.id });

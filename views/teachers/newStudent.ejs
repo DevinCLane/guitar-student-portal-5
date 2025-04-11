@@ -1,34 +1,46 @@
 <%- include('../partials/header') -%>
 <div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
+    <div class="row mt-5">
+        <div class="col-6">
             <div>
                 <p><strong>Name</strong>: <%= teacher.name %></p>
                 <p><strong>Email</strong>: <%= teacher.email %></p>
                 <a href="/logout" class="col-3 btn btn-primary">Logout</a>
             </div>
-      </div>
-          <div class="mt-5">
+        </div>
+        <div class="mt-5">
             <h2>Add a student</h2>
-            <form action="/teachers/createStudent" method="POST">
-              <div class="mb-3">
-                  <label for="name" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="name" name="name">
-              </div>
-              <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="email" name="email">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+            <form action="/teachers/students" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        name="name"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                    />
+                </div>
+                <button type="submit" class="btn btn-primary" value="Upload">
+                    Submit
+                </button>
             </form>
-          </div>
-      </div>
-      <div class="col-6">
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/teachers/dashboard">Return to Dashboard</a>
-        </div>  
-      </div>  
+        </div>
     </div>
-  </div>
+    <div class="col-6">
+        <div class="row justify-content-center mt-5">
+            <a class="btn btn-primary" href="/teachers/dashboard"
+                >Return to Dashboard</a
+            >
+        </div>
+    </div>
 </div>
 <%- include('../partials/footer') -%>
