@@ -1,15 +1,16 @@
 const Teacher = require("../../models/Teacher");
 const Student = require("../../models/Student");
-const LessonPlan = require("../../models/LessonPlan");
+const Lesson = require("../../models/Lesson");
 
 module.exports = {
     getStudent: async (req, res) => {
         try {
             const teacher = await Teacher.findById(req.user.id);
             const student = await Student.findById(req.params.studentId);
-            const lessonPlans = await LessonPlan.find({
-                student: req.params.id,
+            const lessons = await Lesson.find({
+                student: req.params.studentId,
             });
+            console.log(lessons);
 
             if (!student) {
                 req.flash("errors", {
@@ -18,9 +19,9 @@ module.exports = {
                 return res.redirect("/teachers/dashboard");
             }
 
-            res.render("student/profile", {
+            res.render("teachers/students/profile", {
                 student: student,
-                lessonPlans: lessonPlans,
+                lessons: lessons,
                 teacher: teacher,
             });
         } catch (error) {
@@ -46,7 +47,7 @@ module.exports = {
                 return;
             }
 
-            res.render("teachers/newStudent", {
+            res.render("teachers/students/new", {
                 teacher: teacher,
             });
         } catch (error) {

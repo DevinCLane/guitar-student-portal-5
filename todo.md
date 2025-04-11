@@ -38,4 +38,20 @@ then build out the views to test all these features. teacher can create a lesson
 2025-04-11
 
 -   view individual student page:
-    -   does the route work?
+-   be able to add new lessons for students:
+    -   display new lesson form
+    -   view newly created lesson on the student's page
+
+bigger picture:
+
+-   rename every instance of lesson plan to lesson
+-   reorganize the views to match the routes organiation? everything a teacher does is under teacher
+-
+
+2025-04-11
+
+-   next steps:
+    -   add individual lesson view
+    -   clean up the date in the lesson so that what the teacher sees on the student page is just e.g., Thurs April 10 2025.
+    -   make sure they are ordered by date
+    -   delete all the students in the datebase because they have LessonPlans not lessons

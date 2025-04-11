@@ -16,9 +16,9 @@ A application for guitar teachers to manage their students, create lesson plans,
 
 | Method   | Path                                 | Description                     |
 | -------- | ------------------------------------ | ------------------------------- |
-| `GET`    | `/teachers/students/:studentId`      | View individual student profile |
 | `GET`    | `/teachers/students/new`             | Display add student form        |
 | `POST`   | `/teachers/students`                 | Create new student              |
+| `GET`    | `/teachers/students/:studentId`      | View individual student profile |
 | `GET`    | `/teachers/students/:studentId/edit` | Display edit student form       |
 | `PUT`    | `/teachers/students/:studentId/`     | Update student                  |
 | `DELETE` | `/teachers/students/:studentId`      | Delete student                  |

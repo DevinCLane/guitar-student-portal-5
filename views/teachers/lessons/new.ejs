@@ -1,4 +1,4 @@
-<%- include('../partials/header') -%>
+<%- include('../../partials/header') -%>
 <div class="container">
     <div class="row mt-5">
         <div class="col-6">
@@ -8,26 +8,34 @@
                 <a href="/logout" class="col-3 btn btn-primary">Logout</a>
             </div>
         </div>
+        <div class="col-6">
+            <div>
+                <p><strong>Student</strong>: <%= student.name %></p>
+            </div>
+        </div>
         <div class="mt-5">
-            <h2>Add a student</h2>
-            <form action="/teachers/students" method="POST">
+            <h2>Add a lesson</h2>
+            <form
+                action="/teachers/students/<%= student._id%>/lessons"
+                method="POST"
+            >
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
+                    <label for="date" class="form-label">Date</label>
                     <input
-                        type="text"
+                        type="date"
                         class="form-control"
-                        id="name"
-                        name="name"
+                        id="date"
+                        name="date"
                     />
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input
-                        type="email"
+                    <label for="text-area" class="form-label">Lesson</label>
+                    <textarea
                         class="form-control"
-                        id="email"
-                        name="email"
-                    />
+                        id="text-area"
+                        rows="10"
+                        name="content"
+                    ></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" value="Upload">
                     Submit
@@ -43,4 +51,4 @@
         </div>
     </div>
 </div>
-<%- include('../partials/footer') -%>
+<%- include('../../partials/footer') -%>

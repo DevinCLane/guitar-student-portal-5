@@ -15,10 +15,10 @@ const StudentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Teacher",
     },
-    LessonPlans: [
+    lessons: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "LessonPlan",
+            ref: "Lesson",
         },
     ],
 });

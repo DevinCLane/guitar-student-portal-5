@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const teacherDashboardController = require("../controllers/teacher/dashboard");
-const teacherStudentController = require("../controllers/teacher/studentsController");
+const teacherDashboardController = require("../controllers/teachers/dashboard");
+const teacherStudentController = require("../controllers/teachers/studentsController");
+const teacherLessonController = require("../controllers/teachers/lessonController");
 const { ensureAuth } = require("../middleware/auth");
 const upload = require("../middleware/multer");
 
@@ -54,20 +55,20 @@ router.delete(
 // Lesson Management
 // */
 
-// // display new lesson form
-// router.get(
-//     "/students/:studentId/lessons/new",
-//     ensureAuth,
-//     teacherController.getNewLessonForm
-// );
+// display new lesson form
+router.get(
+    "/students/:studentId/lessons/new",
+    ensureAuth,
+    teacherLessonController.getNewLessonForm
+);
 // // create a new lesson plan
-// router.post(
-//     "/students/:studentId/lessons",
-//     ensureAuth,
-//     upload.single("file"),
-//     // todo: create a new lesson plan as a teacher
-//     teacherController.createLesson
-// );
+router.post(
+    "/students/:studentId/lessons",
+    ensureAuth,
+    upload.single("file"),
+    // todo: create a new lesson plan as a teacher
+    teacherLessonController.createLesson
+);
 
 // router.get(
 //     "/students/:studentId/lessons/:lessonId",
