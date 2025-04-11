@@ -16,7 +16,7 @@
         <div class="mt-5">
             <h2>Add a lesson</h2>
             <form
-                action="/teachers/students/<%= student._id%>/lesson"
+                action="/teachers/students/<%= student._id%>/lessons"
                 method="POST"
             >
                 <div class="mb-3">
@@ -25,7 +25,7 @@
                         type="date"
                         class="form-control"
                         id="date"
-                        date="date"
+                        name="date"
                     />
                 </div>
                 <div class="mb-3">
@@ -34,6 +34,7 @@
                         class="form-control"
                         id="text-area"
                         rows="10"
+                        name="content"
                     ></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" value="Upload">

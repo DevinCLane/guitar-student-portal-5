@@ -36,7 +36,7 @@ module.exports = {
                 imageData = await cloudinary.uploader.upload(req.file.path);
             }
 
-            await Lesson.create({
+            const lesson = await Lesson.create({
                 date: req.body.date,
                 content: req.body.content,
                 image: imageData.secure_url || null,
@@ -44,7 +44,14 @@ module.exports = {
                 teacher: req.user.id,
                 student: req.params.studentId,
             });
-            res.redirect(`/teachers/student/${req.params.studentId}`);
+
+            await Student.findByIdAndUpdate(
+                req.params.studentId,
+                { $push: { lessons: lesson._id } },
+                { new: true }
+            );
+
+            res.redirect(`/teachers/students/${req.params.studentId}`);
         } catch (error) {
             console.log(error);
         }
