@@ -34,3 +34,8 @@ then build out the views to test all these features. teacher can create a lesson
 -   then student can log in as student
 -   student can view dashboard with lessons
 -   student can view individual lessons
+
+2025-04-11
+
+-   view individual student page:
+    -   does the route work?

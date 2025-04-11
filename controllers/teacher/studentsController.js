@@ -5,11 +5,19 @@ const LessonPlan = require("../../models/LessonPlan");
 module.exports = {
     getStudent: async (req, res) => {
         try {
-            const student = await Student.findById(req.params.id);
+            const teacher = await Teacher.findById(req.user.id);
+            const student = await Student.findById(req.params.studentId);
             const lessonPlans = await LessonPlan.find({
                 student: req.params.id,
             });
-            const teacher = await Teacher.findById({ _id: req.user.id });
+
+            if (!student) {
+                req.flash("errors", {
+                    msg: "student not found",
+                });
+                return res.redirect("/teachers/dashboard");
+            }
+
             res.render("student/profile", {
                 student: student,
                 lessonPlans: lessonPlans,
@@ -17,6 +25,10 @@ module.exports = {
             });
         } catch (error) {
             console.log(error);
+            req.flash("errors", {
+                msg: "An error occurred while fetching that student.",
+            });
+            res.redirect("/teachers/dashboard");
         }
     },
 

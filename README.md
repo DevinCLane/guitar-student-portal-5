@@ -14,14 +14,14 @@ A application for guitar teachers to manage their students, create lesson plans,
 
 ### Student Management
 
-| Method   | Path                                | Description                     |
-| -------- | ----------------------------------- | ------------------------------- |
-| `GET`    | `/teachers/student/:studentId`      | View individual student profile |
-| `GET`    | `/teachers/student/new`             | Display add student form        |
-| `POST`   | `/teachers/student`                 | Create new student              |
-| `GET`    | `/teachers/student/:studentId/edit` | Display edit student form       |
-| `PUT`    | `/teachers/student/:studentId/`     | Update student                  |
-| `DELETE` | `/teachers/student/:studentId`      | Delete student                  |
+| Method   | Path                                 | Description                     |
+| -------- | ------------------------------------ | ------------------------------- |
+| `GET`    | `/teachers/students/:studentId`      | View individual student profile |
+| `GET`    | `/teachers/students/new`             | Display add student form        |
+| `POST`   | `/teachers/students`                 | Create new student              |
+| `GET`    | `/teachers/students/:studentId/edit` | Display edit student form       |
+| `PUT`    | `/teachers/students/:studentId/`     | Update student                  |
+| `DELETE` | `/teachers/students/:studentId`      | Delete student                  |
 
 ### Lesson Management
 
