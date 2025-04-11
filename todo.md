@@ -47,3 +47,11 @@ bigger picture:
 -   rename every instance of lesson plan to lesson
 -   reorganize the views to match the routes organiation? everything a teacher does is under teacher
 -
+
+2025-04-11
+
+-   next steps:
+    -   add individual lesson view
+    -   clean up the date in the lesson so that what the teacher sees on the student page is just e.g., Thurs April 10 2025.
+    -   make sure they are ordered by date
+    -   delete all the students in the datebase because they have LessonPlans not lessons
