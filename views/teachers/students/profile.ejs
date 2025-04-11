@@ -1,4 +1,4 @@
-<%- include('../partials/header') -%>
+<%- include('../../partials/header') -%>
 <div class="container">
   <div class="row mt-5">
       <div class="col-6">
@@ -21,7 +21,7 @@
   </div>  
   <!-- add a new lesson plan -->
   <div class="col-6">
-            <a href="/teachers/students/<%= student._id%>/lesson/new" class="btn btn-primary">New Lesson</a>
+            <a href="/teachers/students/<%= student._id%>/lessons/new" class="btn btn-primary">New Lesson</a>
   </div>
   <!-- todo: delete student -->
   <!-- this should be a button only -->
@@ -31,4 +31,4 @@
         </div>  
       </div>  
 </div>
-<%- include('../partials/footer') -%>
+<%- include('../../partials/footer') -%>

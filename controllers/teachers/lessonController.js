@@ -17,7 +17,7 @@ module.exports = {
                 return;
             }
 
-            res.render("teachers/newLesson", {
+            res.render("teachers/lessons/new", {
                 student: student,
                 teacher: teacher,
             });
