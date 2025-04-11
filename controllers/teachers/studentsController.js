@@ -8,8 +8,9 @@ module.exports = {
             const teacher = await Teacher.findById(req.user.id);
             const student = await Student.findById(req.params.studentId);
             const lessons = await Lesson.find({
-                student: req.params.id,
+                student: req.params.studentId,
             });
+            console.log(lessons);
 
             if (!student) {
                 req.flash("errors", {
