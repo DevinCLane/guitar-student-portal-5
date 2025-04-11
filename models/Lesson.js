@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const LessonPlanSchema = new mongoose.Schema({
-    title: {
-        type: String,
+const LessonSchema = new mongoose.Schema({
+    date: {
+        type: Date,
         required: true,
     },
     content: {
@@ -35,4 +35,4 @@ const LessonPlanSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("LessonPlan", LessonPlanSchema);
+module.exports = mongoose.model("Lesson", LessonSchema);

@@ -38,4 +38,11 @@ then build out the views to test all these features. teacher can create a lesson
 2025-04-11
 
 -   view individual student page:
-    -   does the route work?
+-   be able to add new lessons for students:
+    -   display new lesson form
+
+bigger picture:
+
+-   rename every instance of lesson plan to lesson
+-   reorganize the views to match the routes organiation? everything a teacher does is under teacher
+-

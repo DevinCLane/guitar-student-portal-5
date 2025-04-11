@@ -1,6 +1,6 @@
 const Teacher = require("../../models/Teacher");
 const Student = require("../../models/Student");
-const LessonPlan = require("../../models/LessonPlan");
+const LessonPlan = require("../../models/Lesson");
 
 module.exports = {
     getStudent: async (req, res) => {
@@ -18,7 +18,7 @@ module.exports = {
                 return res.redirect("/teachers/dashboard");
             }
 
-            res.render("student/profile", {
+            res.render("teachers/students/profile", {
                 student: student,
                 lessonPlans: lessonPlans,
                 teacher: teacher,
@@ -46,7 +46,7 @@ module.exports = {
                 return;
             }
 
-            res.render("teachers/newStudent", {
+            res.render("teachers/students/new", {
                 teacher: teacher,
             });
         } catch (error) {

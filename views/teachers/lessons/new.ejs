@@ -1,0 +1,53 @@
+<%- include('../partials/header') -%>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6">
+            <div>
+                <p><strong>Name</strong>: <%= teacher.name %></p>
+                <p><strong>Email</strong>: <%= teacher.email %></p>
+                <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+            </div>
+        </div>
+        <div class="col-6">
+            <div>
+                <p><strong>Student</strong>: <%= student.name %></p>
+            </div>
+        </div>
+        <div class="mt-5">
+            <h2>Add a lesson</h2>
+            <form
+                action="/teachers/students/<%= student._id%>/lesson"
+                method="POST"
+            >
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="date"
+                        date="date"
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="text-area" class="form-label">Lesson</label>
+                    <textarea
+                        class="form-control"
+                        id="text-area"
+                        rows="10"
+                    ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" value="Upload">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="row justify-content-center mt-5">
+            <a class="btn btn-primary" href="/teachers/dashboard"
+                >Return to Dashboard</a
+            >
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') -%>
