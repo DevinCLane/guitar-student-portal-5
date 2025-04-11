@@ -12,9 +12,9 @@
        <h1><%= student.name %></h1>
         <!-- lesson plans -->
       <ul class="row list-unstyled">
-        <% for(var i=0; i<lessonPlans.length; i++) {%>
+        <% for(var i=0; i<lessons.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/lessonPlan/<%= lessonPlans[i]._id%>"><% lessonPlans[i].title %></a>
+            <a href="/lessonPlan/<%= lessonPlans[i]._id%>"><% lessons[i].title %></a>
           </li>
         <% } %>
         </ul>

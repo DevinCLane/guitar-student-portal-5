@@ -40,6 +40,7 @@ then build out the views to test all these features. teacher can create a lesson
 -   view individual student page:
 -   be able to add new lessons for students:
     -   display new lesson form
+    -   view newly created lesson on the student's page
 
 bigger picture:
 
