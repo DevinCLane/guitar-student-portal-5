@@ -1,6 +1,7 @@
 const Lesson = require("../../models/Lesson");
 const Student = require("../../models/Student");
 const Teacher = require("../../models/Teacher");
+const formatDate = require("../../utils/formatDate");
 const cloudinary = require("../../middleware/cloudinary");
 
 module.exports = {
@@ -57,14 +58,21 @@ module.exports = {
         }
     },
 
-    // getLessonPlan: async (req, res) => {
-    //     try {
-    //         const lessonPlan = await LessonPlan.findById(req.params.id);
-    //         res.render("lessonPlan/lesson", { lessonPlan: lessonPlan });
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // },
+    getLesson: async (req, res) => {
+        try {
+            const lesson = await Lesson.findById(req.params.lessonId);
+            formatDate(lesson);
+            const teacher = await Teacher.findById(req.user.id);
+            const student = await Student.findById(req.params.studentId);
+            res.render("teachers/lessons/show", {
+                lesson: lesson,
+                teacher: teacher,
+                student: student,
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    },
     // deleteLessonPlan: async (req, res) => {
     //     try {
     //         // Find post by id

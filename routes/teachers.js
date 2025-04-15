@@ -27,7 +27,6 @@ router.get(
 router.post("/students", ensureAuth, teacherStudentController.createStudent);
 
 // view individual student
-// todo: create view for student
 router.get(
     "/students/:studentId",
     ensureAuth,
@@ -45,11 +44,11 @@ router.get(
 // router.put("/students/:studentId", ensureAuth, studentController.updateStudent);
 // delete student
 // todo: create controller method for deleting student
-router.delete(
-    "/students/:studentId",
-    ensureAuth,
-    teacherStudentController.deleteStudent
-);
+// router.delete(
+//     "/students/:studentId",
+//     ensureAuth,
+//     teacherStudentController.deleteStudent
+// );
 
 // /*
 // Lesson Management
@@ -61,7 +60,7 @@ router.get(
     ensureAuth,
     teacherLessonController.getNewLessonForm
 );
-// // create a new lesson plan
+// create a new lesson plan
 router.post(
     "/students/:studentId/lessons",
     ensureAuth,
@@ -70,11 +69,13 @@ router.post(
     teacherLessonController.createLesson
 );
 
-// router.get(
-//     "/students/:studentId/lessons/:lessonId",
-//     ensureAuth,
-//     teacherController.getLesson
-// );
+// view individual lesson
+router.get(
+    "/students/:studentId/lessons/:lessonId",
+    ensureAuth,
+    teacherLessonController.getLesson
+);
+
 // router.get(
 //     "/students/:studentId/lessons/:lessonId/edit",
 //     ensureAuth,

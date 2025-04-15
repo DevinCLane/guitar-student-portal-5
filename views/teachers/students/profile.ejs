@@ -15,7 +15,7 @@
         <% for(var i=0; i<lessons.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
             <!-- todo: add correct link for individual lesson view -->
-            <a href=""><%= lessons[i].date %></a>
+            <a href="/teachers/students/<%= student._id%>/lessons/<%= lessons[i]._id %>"><%= lessons[i].formattedDate %></a>
           </li>
         <% } %>
       </ul>

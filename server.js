@@ -58,6 +58,11 @@ app.use(passport.session());
 //Use flash messages for errors, info, ect...
 app.use(flash());
 
+// handle source maps
+app.get("*.js.map", (req, res) => {
+    res.status(404).end();
+});
+
 //Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes);
 // app.use("/students", studentRoutes);
