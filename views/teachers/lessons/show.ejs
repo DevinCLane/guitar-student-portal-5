@@ -1,0 +1,35 @@
+<%- include('../../partials/header') -%>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-6">
+            <h2><%= lesson.formattedDate %></h2>
+            <img class="img-fluid" src="<%= lesson.image%>" />
+            <div class="row justify-content-between">
+                <%= lesson.content %> <%if(lesson.teacher == teacher.id){ %>
+                <form
+                    action="/teachers/students/<%= student.id %>/lessons/<%= lesson.id %>"
+                    method="DELETE"
+                    class="col-3"
+                >
+                    <button
+                        class="btn btn-primary fa fa-trash"
+                        type="submit"
+                    ></button>
+                </form>
+                <%}%>
+            </div>
+        </div>
+        <div class="col-6 mt-5">
+            <a
+                class="btn btn-primary"
+                href="/teachers/students/<%= student.id %>"
+                >Return to Student</a
+            >
+            <a class="btn btn-primary" href="/teachers/dashboard"
+                >Return to Dashboard</a
+            >
+        </div>
+    </div>
+</div>
+
+<%- include('../../partials/footer') -%>

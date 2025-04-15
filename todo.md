@@ -55,3 +55,13 @@ bigger picture:
     -   clean up the date in the lesson so that what the teacher sees on the student page is just e.g., Thurs April 10 2025.
     -   make sure they are ordered by date
     -   delete all the students in the datebase because they have LessonPlans not lessons
+
+2025-04-14
+
+next steps:
+
+-   clean up the date
+-   add delete lessons functionality
+-   delete students
+-   edit lesson
+-   add return to student on new lesson page

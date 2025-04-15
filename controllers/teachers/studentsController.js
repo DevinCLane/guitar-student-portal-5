@@ -1,6 +1,7 @@
 const Teacher = require("../../models/Teacher");
 const Student = require("../../models/Student");
 const Lesson = require("../../models/Lesson");
+const formatDate = require("../../utils/formatDate");
 
 module.exports = {
     getStudent: async (req, res) => {
@@ -9,15 +10,9 @@ module.exports = {
             const student = await Student.findById(req.params.studentId);
             const lessons = await Lesson.find({
                 student: req.params.studentId,
-            });
-            console.log(lessons);
+            }).sort("date");
 
-            if (!student) {
-                req.flash("errors", {
-                    msg: "student not found",
-                });
-                return res.redirect("/teachers/dashboard");
-            }
+            formatDate(lessons);
 
             res.render("teachers/students/profile", {
                 student: student,
@@ -87,13 +82,13 @@ module.exports = {
     // todo: getEditStudentForm
     // todo: updateStudent
 
-    deleteStudent: async (req, res) => {
-        try {
-            await Student.deleteOne({ _id: req.params.id });
-            res.redirect("/teachers/dashboard");
-        } catch (error) {
-            console.log(error);
-            res.redirect("/teachers/dashboard");
-        }
-    },
+    // deleteStudent: async (req, res) => {
+    //     try {
+    //         await Student.deleteOne({ _id: req.params.id });
+    //         res.redirect("/teachers/dashboard");
+    //     } catch (error) {
+    //         console.log(error);
+    //         res.redirect("/teachers/dashboard");
+    //     }
+    // },
 };
