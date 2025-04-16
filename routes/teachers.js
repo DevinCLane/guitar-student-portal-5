@@ -88,12 +88,12 @@ router.get(
 //     teacherController.updateLesson
 // );
 
-// // delete a lesson plan
-// router.delete(
-//     "/students/:studentId/lessons/:lessonPlanId",
-//     ensureAuth,
-//     // todo: controller to delete a lesson plan as a teacher
-//     teacherController.deleteLesson
-// );
+// delete a lesson plan
+router.delete(
+    "/students/:studentId/lessons/:lessonId",
+    ensureAuth,
+    // todo: controller to delete a lesson plan as a teacher
+    teacherLessonController.deleteLesson
+);
 
 module.exports = router;
