@@ -65,3 +65,7 @@ next steps:
 -   delete students
 -   edit lesson
 -   add return to student on new lesson page
+
+2025-04-16
+
+-   add delete lessons functionality

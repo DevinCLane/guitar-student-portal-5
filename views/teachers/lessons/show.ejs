@@ -7,8 +7,8 @@
             <div class="row justify-content-between">
                 <%= lesson.content %> <%if(lesson.teacher == teacher.id){ %>
                 <form
-                    action="/teachers/students/<%= student.id %>/lessons/<%= lesson.id %>"
-                    method="DELETE"
+                    action="/teachers/students/<%= student.id %>/lessons/<%= lesson.id %>?_method=DELETE"
+                    method="POST"
                     class="col-3"
                 >
                     <button

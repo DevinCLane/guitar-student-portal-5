@@ -73,20 +73,22 @@ module.exports = {
             console.log(error);
         }
     },
-    // deleteLessonPlan: async (req, res) => {
-    //     try {
-    //         // Find post by id
-    //         let lessonPlan = await LessonPlan.findById({ _id: req.params.id });
-    //         // Delete image from cloudinary
-    //         if (lessonPlan.cloudinaryId) {
-    //             await cloudinary.uploader.destroy(post.cloudinaryId);
-    //         }
-    //         // Delete post from db
-    //         await lessonPlan.remove({ _id: req.params.id });
-    //         console.log("Deleted Lesson Plan");
-    //         res.redirect(`student/${req.params.studentId}`);
-    //     } catch (err) {
-    //         res.redirect(`student/${req.params.studentId}`);
-    //     }
-    // },
+    deleteLesson: async (req, res) => {
+        try {
+            // Find lesson by id
+            let lesson = await Lesson.findById({ _id: req.params.lessonId });
+            // Delete image from cloudinary
+            if (lesson.cloudinaryId) {
+                await cloudinary.uploader.destroy(post.cloudinaryId);
+            }
+            // Delete post from db
+            await lesson.remove({ _id: req.params.lessonId });
+            console.log("Deleted Lesson Plan");
+            res.redirect(`/teachers/students/${req.params.studentId}`);
+        } catch (err) {
+            res.redirect(
+                `/teachers/students/${req.params.studentId}/lessons/${req.params.lessonId}`
+            );
+        }
+    },
 };
