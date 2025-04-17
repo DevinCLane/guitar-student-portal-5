@@ -1,7 +1,9 @@
 const Student = require("../../models/Student");
 const Lesson = require("../../models/Lesson");
+const Teacher = require("../../models/Teacher");
 const passport = require("passport");
 const validator = require("validator");
+const formatDate = require("../../utils/formatDate");
 
 module.exports = {
     setupPassword: (req, res) => {
@@ -39,53 +41,61 @@ module.exports = {
 
     login: (req, res, next) => {
         const validationErrors = [];
-        if (!validator.isEmail(req.body.email))
+        if (!validator.isEmail(req.body.email)) {
             validationErrors.push({
                 msg: "Please enter a valid email address.",
             });
-        if (validator.isEmpty(req.body.password))
-            validationErrors.push({ msg: "Password cannot be blank." });
+        }
 
         if (validationErrors.length) {
             req.flash("errors", validationErrors);
             return res.redirect("/students/login");
         }
+
         req.body.email = validator.normalizeEmail(req.body.email, {
             gmail_remove_dots: false,
         });
 
-        passport.authenticate("student-local", (err, student, info) => {
-            if (err) {
-                return next(err);
-            }
-            if (!student) {
-                req.flash("errors", info);
-                return res.redirect("/students/login");
-            }
-            req.logIn(student, (err) => {
-                if (err) {
-                    return next(err);
-                }
+        // First check if this is a first-time student login
+        Student.findOne({ email: req.body.email }, async (err, student) => {
+            if (err) return next(err);
 
-                if (student.needsPassword) {
+            // Handle first-time login (no password needed)
+            if (student && student.needsPassword) {
+                return req.logIn(student, (err) => {
+                    if (err) return next(err);
                     return res.redirect("/students/setup-password");
-                }
+                });
+            }
 
-                req.flash("success", { msg: "Success! You are logged in." });
-                res.redirect(req.session.returnTo || "/students/profile");
-            });
-        })(req, res, next);
+            // Regular login with password check
+            passport.authenticate("student-local", (err, student, info) => {
+                if (err) return next(err);
+                if (!student) {
+                    req.flash("errors", info);
+                    return res.redirect("/students/login");
+                }
+                req.logIn(student, (err) => {
+                    if (err) return next(err);
+                    req.flash("success", {
+                        msg: "Success! You are logged in.",
+                    });
+                    res.redirect(req.session.returnTo || "/students/profile");
+                });
+            })(req, res, next);
+        });
     },
 
     getProfile: async (req, res) => {
         try {
             const student = await Student.findById(req.user._id);
+            const teacher = await Teacher.findById(req.user.teacher);
             const lessons = await Lesson.find({
                 student: req.user._id,
             }).sort("date");
 
             formatDate(lessons);
-            res.render("students/profile", { student, lessons });
+            res.render("students/profile", { student, lessons, teacher });
         } catch (error) {
             console.error(error);
             res.render("students/login");
