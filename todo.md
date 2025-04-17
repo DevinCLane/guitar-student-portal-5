@@ -73,4 +73,7 @@ next steps:
 
 2025-04-17
 
--   todo:
+-   done: add student login
+-   todo: double check student login
+-   todo: add student routes/controller/views for lessons. so how is a student's view of their own lessons different than a teachers view of that lesson
+-   todo: add links on landing page for teacher login vs student login
