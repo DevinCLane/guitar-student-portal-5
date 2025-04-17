@@ -1,0 +1,35 @@
+<%- include('../../partials/header') -%>
+<div class="container">
+  <div class="row mt-5">
+      <div class="col-6">
+          <div>
+              <p><strong>Name</strong>: <%= teacher.name %></p>
+              <p><strong>Email</strong>: <%= teacher.email %></p>
+              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+          </div>
+    <div class="row justify-content-center mt-5">
+      <!-- show the student's name -->
+       <h1><%= student.name %></h1>
+        <!-- lesson plans -->
+      <ul class="row list-unstyled">
+        <% for(var i=0; i<lessons.length; i++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <!-- todo: add correct link for individual lesson view -->
+            <a href="/teachers/students/<%= student._id%>/lessons/<%= lessons[i]._id %>"><%= lessons[i].formattedDate %></a>
+          </li>
+        <% } %>
+      </ul>
+  </div>  
+  <!-- add a new lesson plan -->
+  <div class="col-6">
+            <a href="/teachers/students/<%= student._id%>/lessons/new" class="btn btn-primary">New Lesson</a>
+  </div>
+  <!-- todo: delete student -->
+  <!-- this should be a button only -->
+   <div class="col-6">
+        <div class="row justify-content-center mt-5">
+          <a class="btn btn-primary" href="/teachers/dashboard">Return to Dashboard</a>
+        </div>  
+      </div>  
+</div>
+<%- include('../../partials/footer') -%>

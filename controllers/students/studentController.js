@@ -19,7 +19,7 @@ module.exports = {
 
         if (validationErrors.length) {
             req.flash("errors", validationErrors);
-            return res.redirect("/login");
+            return res.redirect("/students/login");
         }
         req.body.email = validator.normalizeEmail(req.body.email, {
             gmail_remove_dots: false,

@@ -67,6 +67,7 @@ app.get("*.js.map", (req, res) => {
 app.use("/", mainRoutes);
 // app.use("/students", studentRoutes);
 app.use("/teachers", teacherRoutes);
+app.use("/students", studentRoutes);
 
 //Server Running
 app.listen(PORT, HOSTNAME, () => {

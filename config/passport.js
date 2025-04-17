@@ -71,18 +71,21 @@ module.exports = function (passport) {
     );
 
     passport.serializeUser((user, done) => {
-        done(null, { id: user.id, role: user.constructor.modelName });
+        done(null, user.id);
     });
 
-    passport.deserializeUser(async (data, done) => {
+    passport.deserializeUser(async (id, done) => {
         try {
-            let user;
-            if (data.role === "Teacher") {
-                user = await Teacher.findById(data.id);
-            } else if (data.role === "Student") {
-                user = await Student.findById(data.id);
-            }
-            done(null, user);
+            // Try Teacher first
+            let user = await Teacher.findById(id);
+            if (user) return done(null, user);
+
+            // If not teacher, try Student
+            user = await Student.findById(id);
+            if (user) return done(null, user);
+
+            // If no user found
+            done(null, false);
         } catch (err) {
             done(err);
         }

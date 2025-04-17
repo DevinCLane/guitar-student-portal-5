@@ -17,4 +17,4 @@ router.get("/profile", ensureStudentAuth, studentController.getProfile);
 // // router.get("/:lessonId", ensureAuth, studentController.getLesson);
 // // router.post("/:lessonId/comment", ensureAuth, studentController.addComment);
 
-// module.exports = router;
+module.exports = router;
