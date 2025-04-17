@@ -13,6 +13,12 @@ module.exports = {
             res.redirect("/dashboard");
         }
     },
+    ensureNeedsPassword: async (req, res, next) => {
+        if (!req.user || !req.user.needsPassword) {
+            return res.redirect("/students/profile");
+        }
+        next();
+    },
     ensureStudentAuth: function (req, res, next) {
         if (
             req.isAuthenticated() &&

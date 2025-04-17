@@ -4,6 +4,35 @@ const passport = require("passport");
 const validator = require("validator");
 
 module.exports = {
+    setupPassword: (req, res) => {
+        res.render("students/setup-password");
+    },
+
+    savePassword: async (req, res) => {
+        try {
+            const student = await Student.findById(req.user.id);
+            if (!student || !student.needsPassword) {
+                return res.redirect("/students/login");
+            }
+
+            if (req.body.password !== req.body.confirmPassword) {
+                req.flash("error", "Passwords do not match");
+                return res.redirect("/students/setup-password");
+            }
+
+            student.password = req.body.password;
+            student.needsPassword = false;
+            await student.save();
+
+            req.flash("success", "Password set successfully");
+            res.redirect("/students/profile");
+        } catch (err) {
+            console.error(err);
+            req.flash("error", "Error setting password");
+            res.redirect("/students/setup-password");
+        }
+    },
+
     getLoginForm: (req, res) => {
         res.render("students/login");
     },
@@ -25,18 +54,23 @@ module.exports = {
             gmail_remove_dots: false,
         });
 
-        passport.authenticate("student-local", (err, user, info) => {
+        passport.authenticate("student-local", (err, student, info) => {
             if (err) {
                 return next(err);
             }
-            if (!user) {
+            if (!student) {
                 req.flash("errors", info);
                 return res.redirect("/students/login");
             }
-            req.logIn(user, (err) => {
+            req.logIn(student, (err) => {
                 if (err) {
                     return next(err);
                 }
+
+                if (student.needsPassword) {
+                    return res.redirect("/students/setup-password");
+                }
+
                 req.flash("success", { msg: "Success! You are logged in." });
                 res.redirect(req.session.returnTo || "/students/profile");
             });
