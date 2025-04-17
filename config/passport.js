@@ -1,6 +1,7 @@
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const Teacher = require("../models/Teacher");
+const Student = require("../models/Student");
 
 module.exports = function (passport) {
     passport.use(
@@ -37,11 +38,53 @@ module.exports = function (passport) {
         )
     );
 
+    passport.use(
+        "student-local",
+        new LocalStrategy(
+            { usernameField: "email" },
+            async (email, password, done) => {
+                try {
+                    const student = await Student.findOne({
+                        email: email.toLowerCase(),
+                    });
+
+                    if (!student) {
+                        return done(null, false, {
+                            msg: `Email ${email} not found.`,
+                        });
+                    }
+
+                    const isMatch = await student.comparePassword(password);
+
+                    if (isMatch) {
+                        return done(null, student);
+                    }
+
+                    return done(null, false, {
+                        msg: "Invalid email or password.",
+                    });
+                } catch (err) {
+                    return done(err);
+                }
+            }
+        )
+    );
+
     passport.serializeUser((user, done) => {
-        done(null, user.id);
+        done(null, { id: user.id, role: user.constructor.modelName });
     });
 
-    passport.deserializeUser((id, done) => {
-        Teacher.findById(id, (err, user) => done(err, user));
+    passport.deserializeUser(async (data, done) => {
+        try {
+            let user;
+            if (data.role === "Teacher") {
+                user = await Teacher.findById(data.id);
+            } else if (data.role === "Student") {
+                user = await Student.findById(data.id);
+            }
+            done(null, user);
+        } catch (err) {
+            done(err);
+        }
     });
 };

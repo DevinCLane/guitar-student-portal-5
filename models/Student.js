@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const StudentSchema = new mongoose.Schema({
     name: {
@@ -45,13 +46,12 @@ StudentSchema.pre("save", function save(next) {
 
 // Helper method for validating student's password.
 
-StudentSchema.methods.comparePassword = function comparePassword(
-    candidatePassword,
-    cb
-) {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-        cb(err, isMatch);
-    });
+StudentSchema.methods.comparePassword = async function (candidatePassword) {
+    try {
+        return await bcrypt.compare(candidatePassword, this.password);
+    } catch (err) {
+        throw err;
+    }
 };
 
 module.exports = mongoose.model("Student", StudentSchema);
