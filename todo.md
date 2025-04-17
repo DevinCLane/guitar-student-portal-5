@@ -68,4 +68,9 @@ next steps:
 
 2025-04-16
 
--   add delete lessons functionality
+-   done: add delete lessons functionality
+-   todo: add student login
+
+2025-04-17
+
+-   todo:
