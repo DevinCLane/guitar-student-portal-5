@@ -77,3 +77,8 @@ next steps:
 -   todo: double check student login
 -   todo: add student routes/controller/views for lessons. so how is a student's view of their own lessons different than a teachers view of that lesson
 -   todo: add links on landing page for teacher login vs student login
+
+2025-04-18
+
+-   todo: add student routes/controllers/views for lessons. a student should be able to view their individual lesson.
+-   todo: add links on landing page for teacher login vs student login
