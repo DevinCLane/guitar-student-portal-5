@@ -63,7 +63,7 @@ exports.getSignup = (req, res) => {
     if (req.user) {
         return res.redirect("/teachers/dashboard");
     }
-    res.render("/teachers/signup", {
+    res.render("teachers/signup", {
         title: "Create Account",
     });
 };
