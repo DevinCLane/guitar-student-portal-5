@@ -6,6 +6,11 @@ const validator = require("validator");
 const formatDate = require("../../utils/formatDate");
 
 module.exports = {
+    getIndex: (req, res) => {
+        res.render("students/index", {
+            title: "Student Portal",
+        });
+    },
     setupPassword: (req, res) => {
         res.render("students/setup-password");
     },
