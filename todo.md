@@ -68,4 +68,17 @@ next steps:
 
 2025-04-16
 
--   add delete lessons functionality
+-   done: add delete lessons functionality
+-   todo: add student login
+
+2025-04-17
+
+-   done: add student login
+-   todo: double check student login
+-   todo: add student routes/controller/views for lessons. so how is a student's view of their own lessons different than a teachers view of that lesson
+-   todo: add links on landing page for teacher login vs student login
+
+2025-04-18
+
+-   todo: add student routes/controllers/views for lessons. a student should be able to view their individual lesson.
+-   todo: add links on landing page for teacher login vs student login
