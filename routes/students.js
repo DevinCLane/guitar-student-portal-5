@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const studentController = require("../controllers/students/studentController");
+const studentLessonController = require("../controllers/students/lessonController");
 const {
     ensureStudentAuth,
     ensureNeedsPassword,
@@ -36,7 +37,13 @@ router.post(
 
 // student dashboard
 router.get("/profile", ensureStudentAuth, studentController.getProfile);
-// // router.get("/:lessonId", ensureAuth, studentController.getLesson);
+
+// student lesson views
+router.get(
+    "/:studentId/lessons/:lessonId",
+    ensureStudentAuth,
+    studentLessonController.getLesson
+);
 // // router.post("/:lessonId/comment", ensureAuth, studentController.addComment);
 
 module.exports = router;
