@@ -11,6 +11,15 @@ const {
 // // todo: delete lesson plan for a student
 // // todo: add comment for a student
 
+/* 
+login/signup for students
+*/
+router.get("/", studentController.getIndex);
+
+// login
+router.get("/login", studentController.getLoginForm);
+router.post("/login", studentController.login);
+
 // set up password
 router.get(
     "/setup-password",
@@ -24,10 +33,6 @@ router.post(
     ensureNeedsPassword,
     studentController.savePassword
 );
-
-// login
-router.get("/login", studentController.getLoginForm);
-router.post("/login", studentController.login);
 
 // student dashboard
 router.get("/profile", ensureStudentAuth, studentController.getProfile);

@@ -1,10 +1,23 @@
 const express = require("express");
 const router = express.Router();
+const authController = require("../controllers/teachers/auth");
+const teacherHomeController = require("../controllers/teachers/home");
 const teacherDashboardController = require("../controllers/teachers/dashboard");
 const teacherStudentController = require("../controllers/teachers/studentsController");
 const teacherLessonController = require("../controllers/teachers/lessonController");
 const { ensureAuth } = require("../middleware/auth");
 const upload = require("../middleware/multer");
+
+/* 
+login/signup for teachers
+*/
+router.get("/", teacherHomeController.getIndex);
+
+router.get("/login", authController.getLogin);
+router.post("/login", authController.postLogin);
+router.get("/logout", authController.logout);
+router.get("/signup", authController.getSignup);
+router.post("/signup", authController.postSignup);
 
 /* 
 Teacher dashboard

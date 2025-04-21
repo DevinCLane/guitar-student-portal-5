@@ -1,12 +1,12 @@
 const passport = require("passport");
 const validator = require("validator");
-const Teacher = require("../models/Teacher");
+const Teacher = require("../../models/Teacher");
 
 exports.getLogin = (req, res) => {
     if (req.user) {
         return res.redirect("/teachers/dashboard");
     }
-    res.render("login", {
+    res.render("teachers/login", {
         title: "Login",
     });
 };
@@ -20,7 +20,7 @@ exports.postLogin = (req, res, next) => {
 
     if (validationErrors.length) {
         req.flash("errors", validationErrors);
-        return res.redirect("/login");
+        return res.redirect("/teachers/login");
     }
     req.body.email = validator.normalizeEmail(req.body.email, {
         gmail_remove_dots: false,
@@ -32,7 +32,7 @@ exports.postLogin = (req, res, next) => {
         }
         if (!user) {
             req.flash("errors", info);
-            return res.redirect("/login");
+            return res.redirect("/teachers/login");
         }
         req.logIn(user, (err) => {
             if (err) {
@@ -63,7 +63,7 @@ exports.getSignup = (req, res) => {
     if (req.user) {
         return res.redirect("/teachers/dashboard");
     }
-    res.render("signup", {
+    res.render("teachers/signup", {
         title: "Create Account",
     });
 };
@@ -81,7 +81,7 @@ exports.postSignup = (req, res, next) => {
 
     if (validationErrors.length) {
         req.flash("errors", validationErrors);
-        return res.redirect("../signup");
+        return res.redirect("/teachers/signup");
     }
     req.body.email = validator.normalizeEmail(req.body.email, {
         gmail_remove_dots: false,
@@ -104,7 +104,7 @@ exports.postSignup = (req, res, next) => {
                 req.flash("errors", {
                     msg: "Account with that email address or name already exists.",
                 });
-                return res.redirect("../signup");
+                return res.redirect("teachers/signup");
             }
             teacher.save((err) => {
                 if (err) {

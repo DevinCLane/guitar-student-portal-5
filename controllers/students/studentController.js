@@ -6,6 +6,11 @@ const validator = require("validator");
 const formatDate = require("../../utils/formatDate");
 
 module.exports = {
+    getIndex: (req, res) => {
+        res.render("students/index", {
+            title: "Student Portal",
+        });
+    },
     setupPassword: (req, res) => {
         res.render("students/setup-password");
     },
@@ -59,6 +64,13 @@ module.exports = {
         // First check if this is a first-time student login
         Student.findOne({ email: req.body.email }, async (err, student) => {
             if (err) return next(err);
+
+            if (!student) {
+                req.flash("errors", {
+                    msg: "No student account found with that email. Please check with your teacher.",
+                });
+                return res.redirect("/students/login");
+            }
 
             // Handle first-time login (no password needed)
             if (student && student.needsPassword) {

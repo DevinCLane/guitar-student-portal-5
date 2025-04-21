@@ -9,7 +9,7 @@
       messages.info.forEach( el => { %>
       <div class="alert alert-info"><%= el.msg %></div>
       <% }) %> <% } %>
-      <form action="/students/login" method="POST">
+      <form action="/teachers/login" method="POST">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label"
             >Email address</label
@@ -20,7 +20,6 @@
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             name="email"
-            required
           />
         </div>
         <div class="mb-3">
@@ -31,9 +30,8 @@
             id="exampleInputPassword1"
             name="password"
           />
-          <small class="form-text text-muted">First time? Leave this password field blank</small>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </section>
   </div>
