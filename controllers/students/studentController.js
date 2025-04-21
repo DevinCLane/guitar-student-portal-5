@@ -65,6 +65,13 @@ module.exports = {
         Student.findOne({ email: req.body.email }, async (err, student) => {
             if (err) return next(err);
 
+            if (!student) {
+                req.flash("errors", {
+                    msg: "No student account found with that email. Please check with your teacher.",
+                });
+                return res.redirect("/students/login");
+            }
+
             // Handle first-time login (no password needed)
             if (student && student.needsPassword) {
                 return req.logIn(student, (err) => {

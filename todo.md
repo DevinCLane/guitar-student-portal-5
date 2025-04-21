@@ -88,3 +88,4 @@ next steps:
     -   change the routes, do the controllers and views move places and thus update all the spots they are referenced?
     -   test to make sure the teachers still works
     -   do the same for students
+    -
