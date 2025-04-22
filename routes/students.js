@@ -20,6 +20,7 @@ router.get("/", studentController.getIndex);
 // login
 router.get("/login", studentController.getLoginForm);
 router.post("/login", studentController.login);
+router.get("/logout", studentController.logout);
 
 // set up password
 router.get(

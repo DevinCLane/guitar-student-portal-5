@@ -98,6 +98,21 @@ module.exports = {
         });
     },
 
+    logout: (req, res) => {
+        req.logout(() => {
+            console.log("Student has logged out.");
+        });
+        req.session.destroy((err) => {
+            if (err)
+                console.log(
+                    "Error : Failed to destroy the session during logout.",
+                    err
+                );
+            req.user = null;
+            res.redirect("/");
+        });
+    },
+
     getProfile: async (req, res) => {
         try {
             const student = await Student.findById(req.user._id);
