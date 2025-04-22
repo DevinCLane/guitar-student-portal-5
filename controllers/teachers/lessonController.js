@@ -79,10 +79,10 @@ module.exports = {
             let lesson = await Lesson.findById({ _id: req.params.lessonId });
             // Delete image from cloudinary
             if (lesson.cloudinaryId) {
-                await cloudinary.uploader.destroy(post.cloudinaryId);
+                await cloudinary.uploader.destroy(lesson.cloudinaryId);
             }
             // Delete post from db
-            await lesson.remove({ _id: req.params.lessonId });
+            await lesson.deleteOne({ _id: req.params.lessonId });
             console.log("Deleted Lesson Plan");
             res.redirect(`/teachers/students/${req.params.studentId}`);
         } catch (err) {
