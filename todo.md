@@ -80,12 +80,15 @@ next steps:
 
 2025-04-18
 
--   todo: add student routes/controllers/views for lessons. a student should be able to view their individual lesson.
--   todo: add links on landing page for teacher login vs student login
+-   done: add student routes/controllers/views for lessons. a student should be able to view their individual lesson.
+-   done: add links on landing page for teacher login vs student login
 -   steps:
     -   add teachers and students link on landing page
     -   add login and signup routes to teachers/login, teachers/signup
     -   change the routes, do the controllers and views move places and thus update all the spots they are referenced?
     -   test to make sure the teachers still works
     -   do the same for students
-    -
+
+2025-04-22
+
+-   fix teacher logout button
