@@ -91,4 +91,12 @@ next steps:
 
 2025-04-22
 
--   fix teacher logout button
+-   done: fix teacher logout button
+-   done: fix student logout button
+-   what else do I need to do for MVP that students can try?
+-   forgot password
+
+2025-04-24
+
+-   todo: forgot password
+-

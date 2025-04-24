@@ -44,10 +44,16 @@ app.use(methodOverride("_method"));
 // Setup Sessions - stored in MongoDB
 app.use(
     session({
-        secret: "keyboard cat",
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
         store: new MongoStore({ mongooseConnection: mongoose.connection }),
+        cookie: {
+            // force HTTPS in production
+            secure: process.env.NODE_ENV === "production",
+            // 1 week
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        },
     })
 );
 
