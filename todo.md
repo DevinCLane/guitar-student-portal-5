@@ -99,4 +99,6 @@ next steps:
 2025-04-24
 
 -   todo: forgot password
--
+-   todo: improve styles
+-   todo: why does log in not work in production?
+-   todo: surface errors to user for server if duplicate names or emails
