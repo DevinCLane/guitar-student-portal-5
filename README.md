@@ -1,4 +1,4 @@
-# Guitar Student Portal
+# Music Student Portal
 
 A application for guitar teachers to manage their students, create lesson plans, and share lesson plans with their students
 

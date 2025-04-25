@@ -1,7 +1,7 @@
 {
-    "name": "binary-upload-boom",
+    "name": "music-student-portal",
     "version": "1.0.0",
-    "description": "100Devs Social Network",
+    "description": "Application for music teachers and their students",
     "main": "server.js",
     "scripts": {
         "start": "nodemon server.js",

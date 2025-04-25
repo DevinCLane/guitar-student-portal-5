@@ -102,3 +102,4 @@ next steps:
 -   todo: improve styles
 -   todo: why does log in not work in production?
 -   todo: surface errors to user for server if duplicate names or emails
+-   todo: improve URL and name
